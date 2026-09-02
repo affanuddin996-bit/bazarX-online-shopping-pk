@@ -75,7 +75,6 @@ body{background:#f5f5f5; padding-bottom:60px}
 <body>
 
 <div class="header" onclick="secretAdmin()">BazarX Online Shop</div>
-
 <div id="home" class="page active">
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="Search in BazarX Online Shop">
@@ -89,119 +88,17 @@ body{background:#f5f5f5; padding-bottom:60px}
   </div>
   <div id="productList" class="product-list"></div>
 </div>
-
-<div id="orderForm" class="page">
-  <div class="back-btn" onclick="showPage('productDetail')">← Place Order</div>
-  <div class="order-form">
-    <div class="form-section">
-      <div class="form-title"><div class="check-circle"><span>✓</span></div>Contact Details</div>
-      <div class="form-group"><label>Your Name</label><input type="text" id="custName" placeholder="Enter your name"></div>
-      <div class="form-group"><label>Phone Number</label><input type="text" id="custPhone" placeholder="+92"></div>
-      <div class="form-group"><label>Doosra Mobile Number (Optional)</label><input type="text" id="custPhone2" placeholder="+92"></div>
-    </div>
-    <div class="form-section">
-      <div class="form-title"><div class="check-circle"><span>✓</span></div>Address Details</div>
-      <div class="form-group"><label>City</label><select id="custCity"><option>Karachi</option><option>Lahore</option><option>Islamabad</option><option>Rawalpindi</option><option>Other</option></select></div>
-      <div class="form-group"><label>Sector / Block / Area Name</label><input type="text" id="custArea" placeholder="##########"></div>
-      <div class="form-group"><label>Full Address</label><textarea id="custAddress" rows="3" placeholder="##########"></textarea></div>
-      <div class="form-group"><label>Mashoor Jagah (Optional)</label><input type="text" id="custLandmark" placeholder="##########"></div>
-    </div>
-    <button class="btn-save" onclick="submitOrder()">Place Order</button>
-  </div>
-</div>
-
-<div id="cart" class="page">
-  <h3 style="padding:10px;background:white">My Cart</h3>
-  <div id="cartList"></div>
-  <div class="cart-total" id="cartTotal" style="display:none">Total: Rs <span id="totalPrice">0</span></div>
-</div>
-
-<div id="myOrders" class="page">
-  <div class="back-btn" onclick="showPage('account')">← Back</div>
-  <h3 style="padding:10px;background:white">My Orders</h3>
-  <div id="myOrdersList"></div>
-</div>
-
-<div id="productDetail" class="page">
-  <div class="product-detail">
-    <img id="dImg" onerror="this.src='https://via.placeholder.com/300/cccccc/ffffff?text=No+Image'">
-    <div class="detail-title" id="dName"></div>
-    <div class="detail-price" id="dPrice"></div>
-    <div id="dStock"></div>
-    <div id="dDelivery"></div>
-    <div id="dCOD"></div>
-    <p id="dDesc" style="margin-top:10px;color:#555;line-height:1.6"></p>
-  </div>
-  <div class="bottom-btns">
-    <button class="btn-cart" onclick="addToCart()">🛒 Add to Cart</button>
-    <button class="btn-order" onclick="showPage('orderForm')">📦 Place Order</button>
-  </div>
-</div>
-
-<div id="account" class="page">
-  <div class="account-box">
-    <h3>Sign In / Sign Up</h3>
-    <div id="loginFormBox" class="login-form-box">
-      <h4 id="loginTitle">Login</h4>
-      <div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="Enter your email"></div>
-      <div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter password"></div>
-      <p id="errorMsg" class="error-msg"></p>
-      <button class="btn-save" onclick="doLogin()">Sign In</button>
-      <button class="btn" style="background:#2196f3;margin-top:8px" onclick="doSignUp()">Create Account</button>
-      <p style="text-align:right;margin-top:8px"><a href="#" onclick="forgotPassword()">Forgot Password?</a></p>
-    </div>
-
-    <div id="userProfile" style="display:none">
-      <p style="margin-bottom:10px;color:green">✅ Logged In</p>
-      <p id="userName" style="font-weight:bold;font-size:16px"></p>
-      <p id="userEmail" style="color:#666;font-size:13px;margin-bottom:15px"></p>
-      <button class="btn" style="background:#2196f3;margin-bottom:10px" onclick="showPage('myOrders'); loadMyOrders()">📦 My Orders</button>
-      <button class="btn-logout" onclick="logout()">Sign Out</button>
-    </div>
-  </div>
-</div>
-
-<div id="service" class="page">
-  <div class="service-box">
-    <h3>Customer Support</h3>
-    <p>Contact us for any complaint or query</p>
-    <a href="https://wa.me/923412255124" target="_blank">📱 WhatsApp: 0341-2255124</a>
-  </div>
-</div>
-
-<div id="admin" class="page">
-  <div class="admin-panel">
-    <h3 id="adminFormTitle">Add Product</h3>
-    <input id="pName" placeholder="Product Name">
-    <input id="pPrice" type="number" placeholder="Price Rs">
-    <input id="pCategory" placeholder="Category: Mobile, Fashion, Grocery, Beauty">
-    <input id="pStock" placeholder="Stock: 100 in Stock">
-    <input id="pDelivery" placeholder="Delivery: Delivery in 5 to 7 days">
-    <select id="pCOD">
-      <option value="Cash on Delivery Available">Cash on Delivery Available</option>
-      <option value="Advance Payment Only">Advance Payment Only</option>
-    </select>
-    <textarea id="pDesc" rows="4" placeholder="Product Description"></textarea>
-    <div class="help"><b>Images:</b> Copy "Direct Link" from postimages.org. Each link in new line</div>
-    <textarea id="pImgs" rows="4" placeholder="https://i.postimg.cc/xxx/1.jpg"></textarea>
-    <button class="btn" id="saveProductBtn" onclick="addProduct()">Add Product</button>
-    <button class="btn" style="background:#555;margin-top:8px" onclick="cancelEdit()">Cancel</button>
-    <button class="btn" style="background:#777;margin-top:8px" onclick="showPage('home')">Back to Home</button>
-    <h3 style="margin-top:15px">Your Products</h3>
-    <div id="adminProductList"></div>
-    <button class="btn" style="background:red;margin-top:10px" onclick="deleteAll()">Delete All Products</button>
-  </div>
-</div>
-
-<div class="nav">
-  <div class="nav-btn active" onclick="showPage('home')">🏠<br>Home</div>
-  <div class="nav-btn" onclick="showPage('cart')">🛒<br>Cart</div>
-  <div class="nav-btn" onclick="showPage('account')">👤<br>Account</div>
-  <div class="nav-btn" onclick="showPage('service')">📞<br>Service</div>
-</div>
+<div id="orderForm" class="page"><div class="back-btn" onclick="showPage('productDetail')">← Place Order</div><div class="order-form"><div class="form-section"><div class="form-title"><div class="check-circle"><span>✓</span></div>Contact Details</div><div class="form-group"><label>Your Name</label><input type="text" id="custName" placeholder="Enter your name"></div><div class="form-group"><label>Phone Number</label><input type="text" id="custPhone" placeholder="+92"></div><div class="form-group"><label>Doosra Mobile Number (Optional)</label><input type="text" id="custPhone2" placeholder="+92"></div></div><div class="form-section"><div class="form-title"><div class="check-circle"><span>✓</span></div>Address Details</div><div class="form-group"><label>City</label><select id="custCity"><option>Karachi</option><option>Lahore</option><option>Islamabad</option><option>Rawalpindi</option><option>Other</option></select></div><div class="form-group"><label>Sector / Block / Area Name</label><input type="text" id="custArea" placeholder="##########"></div><div class="form-group"><label>Full Address</label><textarea id="custAddress" rows="3" placeholder="##########"></textarea></div><div class="form-group"><label>Mashoor Jagah (Optional)</label><input type="text" id="custLandmark" placeholder="##########"></div></div><button class="btn-save" onclick="submitOrder()">Place Order</button></div></div>
+<div id="cart" class="page"><h3 style="padding:10px;background:white">My Cart</h3><div id="cartList"></div><div class="cart-total" id="cartTotal" style="display:none">Total: Rs <span id="totalPrice">0</span></div></div>
+<div id="myOrders" class="page"><div class="back-btn" onclick="showPage('account')">← Back</div><h3 style="padding:10px;background:white">My Orders</h3><div id="myOrdersList"></div></div>
+<div id="productDetail" class="page"><div class="product-detail"><img id="dImg" onerror="this.src='https://via.placeholder.com/300/cccccc/ffffff?text=No+Image'"><div class="detail-title" id="dName"></div><div class="detail-price" id="dPrice"></div><div id="dStock"></div><div id="dDelivery"></div><div id="dCOD"></div><p id="dDesc" style="margin-top:10px;color:#555;line-height:1.6"></p></div><div class="bottom-btns"><button class="btn-cart" onclick="addToCart()">🛒 Add to Cart</button><button class="btn-order" onclick="showPage('orderForm')">📦 Place Order</button></div></div>
+<div id="account" class="page"><div class="account-box"><h3>Sign In / Sign Up</h3><div id="loginFormBox" class="login-form-box"><h4 id="loginTitle">Login</h4><div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="Enter your email"></div><div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter password"></div><p id="errorMsg" class="error-msg"></p><button class="btn-save" onclick="doLogin()">Sign In</button><button class="btn" style="background:#2196f3;margin-top:8px" onclick="doSignUp()">Create Account</button><p style="text-align:right;margin-top:8px"><a href="#" onclick="forgotPassword()">Forgot Password?</a></p></div><div id="userProfile" style="display:none"><p style="margin-bottom:10px;color:green">✅ Logged In</p><p id="userName" style="font-weight:bold;font-size:16px"></p><p id="userEmail" style="color:#666;font-size:13px;margin-bottom:15px"></p><button class="btn" style="background:#2196f3;margin-bottom:10px" onclick="showPage('myOrders'); loadMyOrders()">📦 My Orders</button><button class="btn-logout" onclick="logout()">Sign Out</button></div></div></div>
+<div id="service" class="page"><div class="service-box"><h3>Customer Support</h3><p>Contact us for any complaint or query</p><a href="https://wa.me/923412255124" target="_blank">📱 WhatsApp: 0341-2255124</a></div></div>
+<div id="admin" class="page"><div class="admin-panel"><h3 id="adminFormTitle">Add Product</h3><input id="pName" placeholder="Product Name"><input id="pPrice" type="number" placeholder="Price Rs"><input id="pCategory" placeholder="Category: Mobile, Fashion, Grocery, Beauty"><input id="pStock" placeholder="Stock: 100 in Stock"><input id="pDelivery" placeholder="Delivery: Delivery in 5 to 7 days"><select id="pCOD"><option value="Cash on Delivery Available">Cash on Delivery Available</option><option value="Advance Payment Only">Advance Payment Only</option></select><textarea id="pDesc" rows="4" placeholder="Product Description"></textarea><div class="help"><b>Images:</b> Copy "Direct Link" from postimages.org. Each link in new line</div><textarea id="pImgs" rows="4" placeholder="https://i.postimg.cc/xxx/1.jpg"></textarea><button class="btn" id="saveProductBtn" onclick="addProduct()">Add Product</button><button class="btn" style="background:#555;margin-top:8px" onclick="cancelEdit()">Cancel</button><button class="btn" style="background:#777;margin-top:8px" onclick="showPage('home')">Back to Home</button><h3 style="margin-top:15px">Your Products</h3><div id="adminProductList"></div><button class="btn" style="background:red;margin-top:10px" onclick="deleteAll()">Delete All Products</button></div></div>
+<div class="nav"><div class="nav-btn active" onclick="showPage('home')">🏠<br>Home</div><div class="nav-btn" onclick="showPage('cart')">🛒<br>Cart</div><div class="nav-btn" onclick="showPage('account')">👤<br>Account</div><div class="nav-btn" onclick="showPage('service')">📞<br>Service</div></div>
 
 <script>
-// ====== FIREBASE CONFIG - TUMHARI ASLI API ======
+// ====== FIREBASE CONFIG ======
 const firebaseConfig = {
   apiKey: "AIzaSyDML6ChpxTEgrWypWqDa3MoeJ2XWm_EU",
   authDomain: "bazarx-online-shopping-pk.firebaseapp.com",
@@ -222,199 +119,43 @@ let currentProductIndex = 0;
 let editingIndex = -1;
 let currentUser = null;
 
-function getCartKey(){
-  return currentUser? 'BazarX_cart_' + currentUser.email : 'BazarX_cart_guest';
-}
+function getCartKey(){ return currentUser? 'BazarX_cart_' + currentUser.email : 'BazarX_cart_guest'; }
 function getCart(){ return JSON.parse(localStorage.getItem(getCartKey())) || []; }
 function saveCart(cart){ localStorage.setItem(getCartKey(), JSON.stringify(cart)); }
 
-auth.onAuthStateChanged((user) => {
-  currentUser = user;
-  showUser();
-  loadCart();
-});
+auth.onAuthStateChanged((user) => { currentUser = user; showUser(); loadCart(); });
 
-function secretAdmin(){
-  tapCount++; setTimeout(()=>{tapCount=0}, 2000);
-  if(tapCount >= 10){
-    let pass = prompt("Enter Admin Password:");
-    if(pass == 'admin123'){ showPage('admin'); loadAdminProducts(); }
-    tapCount = 0;
-  }
-}
+function secretAdmin(){ tapCount++; setTimeout(()=>{tapCount=0}, 2000); if(tapCount >= 10){ let pass = prompt("Enter Admin Password:"); if(pass == 'admin123'){ showPage('admin'); loadAdminProducts(); } tapCount = 0; } }
 function showPage(pageId){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   if(pageId=='home') document.querySelectorAll('.nav-btn')[0].classList.add('active');
   if(pageId=='cart') {document.querySelectorAll('.nav-btn')[1].classList.add('active'); loadCart();}
-  if(pageId=='account') {document.querySelectorAll('.nav-btn')[2].classList.add('active';}
+  if(pageId=='account') {document.querySelectorAll('.nav-btn')[2].classList.add('active');} // YEH THEEK KI
   if(pageId=='service') document.querySelectorAll('.nav-btn')[3].classList.add('active');
   if(pageId=='home') loadProducts();
 }
-function searchProduct(){
-  let query = document.getElementById('searchInput').value.toLowerCase();
-  if(query == ''){ loadProducts(); return; }
-  let filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
-  displayProducts(filtered);
-}
-function filterCategory(cat){
-  let filtered = products.filter(p => p.category.toLowerCase() == cat.toLowerCase());
-  displayProducts(filtered);
-}
+function searchProduct(){ let query = document.getElementById('searchInput').value.toLowerCase(); if(query == ''){ loadProducts(); return; } let filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query)); displayProducts(filtered); }
+function filterCategory(cat){ let filtered = products.filter(p => p.category.toLowerCase() == cat.toLowerCase()); displayProducts(filtered); }
 
-function doSignUp(){
-  let email = document.getElementById('loginEmail').value;
-  let password = document.getElementById('loginPassword').value;
-  document.getElementById('errorMsg').innerText = '';
-  if(!email ||!password){ document.getElementById('errorMsg').innerText = 'Please enter Email and Password'; return; }
-  auth.createUserWithEmailAndPassword(email, password)
-.then(() => { alert('Account ban gaya! Ab Sign In karen'); })
-.catch((error) => { document.getElementById('errorMsg').innerText = error.message; });
-}
-
-function doLogin(){
-  let email = document.getElementById('loginEmail').value;
-  let password = document.getElementById('loginPassword').value;
-  document.getElementById('errorMsg').innerText = '';
-  if(!email ||!password){ document.getElementById('errorMsg').innerText = 'Please enter Email and Password'; return; }
-
-  auth.signInWithEmailAndPassword(email, password)
-.then(() => {
-    document.getElementById('loginEmail').value = '';
-    document.getElementById('loginPassword').value = '';
- })
-.catch((error) => {
-    document.getElementById('errorMsg').innerText = 'Wrong Email or Password';
- });
-}
-
-function forgotPassword(){
-  let email = prompt("Apna Email likhen, hum reset link bhejen gay:");
-  if(!email) return;
-  auth.sendPasswordResetEmail(email)
-.then(() => { alert('Password Reset Link apke Email par bhej diya gaya hai'); })
-.catch((error) => { alert('Error: ' + error.message); });
-}
-
+function doSignUp(){ let email = document.getElementById('loginEmail').value; let password = document.getElementById('loginPassword').value; document.getElementById('errorMsg').innerText = ''; if(!email ||!password){ document.getElementById('errorMsg').innerText = 'Please enter Email and Password'; return; } auth.createUserWithEmailAndPassword(email, password).then(() => { alert('Account ban gaya! Ab Sign In karen'); }).catch((error) => { document.getElementById('errorMsg').innerText = error.message; }); }
+function doLogin(){ let email = document.getElementById('loginEmail').value; let password = document.getElementById('loginPassword').value; document.getElementById('errorMsg').innerText = ''; if(!email ||!password){ document.getElementById('errorMsg').innerText = 'Please enter Email and Password'; return; } auth.signInWithEmailAndPassword(email, password).then(() => { document.getElementById('loginEmail').value = ''; document.getElementById('loginPassword').value = ''; }).catch((error) => { document.getElementById('errorMsg').innerText = 'Wrong Email or Password'; }); }
+function forgotPassword(){ let email = prompt("Apna Email likhen, hum reset link bhejen gay:"); if(!email) return; auth.sendPasswordResetEmail(email).then(() => { alert('Password Reset Link apke Email par bhej diya gaya hai'); }).catch((error) => { alert('Error: ' + error.message); }); }
 function logout(){ auth.signOut(); }
-
-function showUser(){
-  if(currentUser){
-    document.getElementById('loginFormBox').style.display = 'none';
-    document.getElementById('userProfile').style.display = 'block';
-    document.getElementById('userName').innerText = currentUser.email.split('@')[0];
-    document.getElementById('userEmail').innerText = currentUser.email;
-  } else {
-    document.getElementById('loginFormBox').style.display = 'block';
-    document.getElementById('userProfile').style.display = 'none';
-  }
-}
-
-function openProduct(i){
-  currentProductIndex = i; let p = products[i];
-  document.getElementById('dImg').src = p.imgs[0]; document.getElementById('dName').innerText = p.name; document.getElementById('dPrice').innerText = 'Rs ' + p.price;
-  document.getElementById('dStock').innerText = p.stock; document.getElementById('dDelivery').innerText = p.delivery; document.getElementById('dCOD').innerText = '💵 ' + p.cod; document.getElementById('dDesc').innerText = p.desc;
-  showPage('productDetail');
-}
-
-function addToCart(){
-  if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; }
-  let p = products[currentProductIndex];
-  let cart = getCart();
-  cart.push(p);
-  saveCart(cart);
-  alert(p.name + ' Cart mein Add ho gaya!');
-}
-
-function submitOrder(){
-  if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; }
-  let name = custName.value; let phone = custPhone.value; let address = custAddress.value;
-  if(!name ||!phone ||!address){ alert('Please fill Name, Phone and Address'); return; }
-  let p = products[currentProductIndex];
-
-  let newOrder = {
-    id: Date.now(),
-    userEmail: currentUser.email,
-    product: p.name,
-    price: p.price,
-    name: name,
-    phone: phone,
-    address: address,
-    date: new Date().toLocaleString(),
-    status: "Pending"
-  };
-  orders.push(newOrder);
-  localStorage.setItem('BazarX_orders', JSON.stringify(orders));
-
-  alert('Order Placed Successfully!\n\nProduct: ' + p.name + '\nName: ' + name + '\nPhone: ' + phone + '\nWe will contact you soon');
-  showPage('home');
-}
-
-function loadCart(){
-  let cart = getCart();
-  let html = ''; let total = 0;
-  if(cart.length == 0){ html = '<div class="no-product">Your Cart is Empty<br>Add some products</div>'; document.getElementById('cartTotal').style.display = 'none'; }
-  else {
-    cart.forEach((p,i)=>{ total += parseInt(p.price); html += `<div class="cart-item"><img src="${p.imgs[0]}"><div class="cart-info"><b>${p.name}</b><br><div class="price">Rs ${p.price}</div></div></div>` })
-    document.getElementById('cartTotal').style.display = 'block'; document.getElementById('totalPrice').innerText = total;
-  }
-  document.getElementById('cartList').innerHTML = html;
-}
-
-function loadMyOrders(){
-  if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; }
-  let userOrders = orders.filter(o => o.userEmail == currentUser.email);
-  let html = '';
-  if(userOrders.length == 0){
-    html = '<div class="no-product">Abhi tak koi order nahi hai</div>';
-  } else {
-    userOrders.reverse().forEach((o)=>{
-      html += `<div class="order-card">
-        <b>Product:</b> ${o.product}<br>
-        <b>Price:</b> Rs ${o.price}<br>
-        <b>Name:</b> ${o.name}<br>
-        <b>Date:</b> ${o.date}<br>
-        <b>Status:</b> <span style="color:orange">${o.status}</span>
-      </div>`;
-    })
-  }
-  document.getElementById('myOrdersList').innerHTML = html;
-}
-
-function editProduct(i){
-  editingIndex = i; let p = products[i];
-  pName.value = p.name; pPrice.value = p.price; pCategory.value = p.category; pStock.value = p.stock; pDelivery.value = p.delivery; pCOD.value = p.cod; pDesc.value = p.desc; pImgs.value = p.imgs.join('\n');
-  document.getElementById('adminFormTitle').innerText = 'Edit Product'; document.getElementById('saveProductBtn').innerText = 'Update Product'; window.scrollTo(0,0);
-}
-function cancelEdit(){
-  editingIndex = -1; document.getElementById('adminFormTitle').innerText = 'Add Product'; document.getElementById('saveProductBtn').innerText = 'Add Product';
-  pName.value=''; pPrice.value=''; pCategory.value=''; pStock.value=''; pDelivery.value=''; pDesc.value=''; pImgs.value='';
-}
-function addProduct(){
-  if(!pName.value) return alert('Please enter Product Name'); if(!pPrice.value) return alert('Please enter Price');
-  let imgArray = pImgs.value.split('\n').filter(url => url.trim()!= ''); if(imgArray.length==0) return alert('Please add at least 1 image');
-  let productData = {name:pName.value,price:pPrice.value,category:pCategory.value,stock:pStock.value,delivery:pDelivery.value,cod:pCOD.value,desc:pDesc.value,imgs:imgArray};
-  if(editingIndex >= 0){ products[editingIndex] = productData; alert('Product Updated Successfully'); cancelEdit(); }
-  else { products.push(productData); alert('Product Added Successfully'); pName.value=''; pPrice.value=''; pCategory.value=''; pStock.value=''; pDelivery.value=''; pDesc.value=''; pImgs.value=''; }
-  localStorage.setItem('BazarX_products', JSON.stringify(products)); loadAdminProducts(); loadProducts();
-}
-function deleteOne(i){
-  if(confirm('Are you sure to delete this product?')){ products.splice(i,1); localStorage.setItem('BazarX_products', JSON.stringify(products)); loadAdminProducts(); loadProducts(); }
-}
-function displayProducts(productArray){
-  let html=''; if(productArray.length==0){ html='<div class="no-product">No products found</div>'; }
-  productArray.forEach((p,i)=>{ let realIndex = products.indexOf(p);
-    html += `<div class="card" onclick="openProduct(${realIndex})"><img src="${p.imgs[0]}" onerror="this.src='https://via.placeholder.com/150/cccccc/ffffff?text=No+Image'"><h3>${p.name}</h3><div class="price">Rs ${p.price}</div><div class="stock">${p.stock || ''}</div><div class="delivery">${p.delivery || ''}</div><div class="cod">💵 ${p.cod || ''}</div></div>`
-  })
-  document.getElementById('productList').innerHTML = html;
-}
+function showUser(){ if(currentUser){ document.getElementById('loginFormBox').style.display = 'none'; document.getElementById('userProfile').style.display = 'block'; document.getElementById('userName').innerText = currentUser.email.split('@')[0]; document.getElementById('userEmail').innerText = currentUser.email; } else { document.getElementById('loginFormBox').style.display = 'block'; document.getElementById('userProfile').style.display = 'none'; } }
+function openProduct(i){ currentProductIndex = i; let p = products[i]; document.getElementById('dImg').src = p.imgs[0]; document.getElementById('dName').innerText = p.name; document.getElementById('dPrice').innerText = 'Rs ' + p.price; document.getElementById('dStock').innerText = p.stock; document.getElementById('dDelivery').innerText = p.delivery; document.getElementById('dCOD').innerText = '💵 ' + p.cod; document.getElementById('dDesc').innerText = p.desc; showPage('productDetail'); }
+function addToCart(){ if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; } let p = products[currentProductIndex]; let cart = getCart(); cart.push(p); saveCart(cart); alert(p.name + ' Cart mein Add ho gaya!'); }
+function submitOrder(){ if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; } let name = custName.value; let phone = custPhone.value; let address = custAddress.value; if(!name ||!phone ||!address){ alert('Please fill Name, Phone and Address'); return; } let p = products[currentProductIndex]; let newOrder = { id: Date.now(), userEmail: currentUser.email, product: p.name, price: p.price, name: name, phone: phone, address: address, date: new Date().toLocaleString(), status: "Pending" }; orders.push(newOrder); localStorage.setItem('BazarX_orders', JSON.stringify(orders)); alert('Order Placed Successfully!\n\nProduct: ' + p.name + '\nName: ' + name + '\nPhone: ' + phone + '\nWe will contact you soon'); showPage('home'); }
+function loadCart(){ let cart = getCart(); let html = ''; let total = 0; if(cart.length == 0){ html = '<div class="no-product">Your Cart is Empty<br>Add some products</div>'; document.getElementById('cartTotal').style.display = 'none'; } else { cart.forEach((p,i)=>{ total += parseInt(p.price); html += `<div class="cart-item"><img src="${p.imgs[0]}"><div class="cart-info"><b>${p.name}</b><br><div class="price">Rs ${p.price}</div></div></div>` }) document.getElementById('cartTotal').style.display = 'block'; document.getElementById('totalPrice').innerText = total; } document.getElementById('cartList').innerHTML = html; }
+function loadMyOrders(){ if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; } let userOrders = orders.filter(o => o.userEmail == currentUser.email); let html = ''; if(userOrders.length == 0){ html = '<div class="no-product">Abhi tak koi order nahi hai</div>'; } else { userOrders.reverse().forEach((o)=>{ html += `<div class="order-card"><b>Product:</b> ${o.product}<br><b>Price:</b> Rs ${o.price}<br><b>Name:</b> ${o.name}<br><b>Date:</b> ${o.date}<br><b>Status:</b> <span style="color:orange">${o.status}</span></div>`; }) } document.getElementById('myOrdersList').innerHTML = html; }
+function editProduct(i){ editingIndex = i; let p = products[i]; pName.value = p.name; pPrice.value = p.price; pCategory.value = p.category; pStock.value = p.stock; pDelivery.value = p.delivery; pCOD.value = p.cod; pDesc.value = p.desc; pImgs.value = p.imgs.join('\n'); document.getElementById('adminFormTitle').innerText = 'Edit Product'; document.getElementById('saveProductBtn').innerText = 'Update Product'; window.scrollTo(0,0); }
+function cancelEdit(){ editingIndex = -1; document.getElementById('adminFormTitle').innerText = 'Add Product'; document.getElementById('saveProductBtn').innerText = 'Add Product'; pName.value=''; pPrice.value=''; pCategory.value=''; pStock.value=''; pDelivery.value=''; pDesc.value=''; pImgs.value=''; }
+function addProduct(){ if(!pName.value) return alert('Please enter Product Name'); if(!pPrice.value) return alert('Please enter Price'); let imgArray = pImgs.value.split('\n').filter(url => url.trim()!= ''); if(imgArray.length==0) return alert('Please add at least 1 image'); let productData = {name:pName.value,price:pPrice.value,category:pCategory.value,stock:pStock.value,delivery:pDelivery.value,cod:pCOD.value,desc:pDesc.value,imgs:imgArray}; if(editingIndex >= 0){ products[editingIndex] = productData; alert('Product Updated Successfully'); cancelEdit(); } else { products.push(productData); alert('Product Added Successfully'); pName.value=''; pPrice.value=''; pCategory.value=''; pStock.value=''; pDelivery.value=''; pDesc.value=''; pImgs.value=''; } localStorage.setItem('BazarX_products', JSON.stringify(products)); loadAdminProducts(); loadProducts(); }
+function deleteOne(i){ if(confirm('Are you sure to delete this product?')){ products.splice(i,1); localStorage.setItem('BazarX_products', JSON.stringify(products)); loadAdminProducts(); loadProducts(); } }
+function displayProducts(productArray){ let html=''; if(productArray.length==0){ html='<div class="no-product">No products found</div>'; } productArray.forEach((p,i)=>{ let realIndex = products.indexOf(p); html += `<div class="card" onclick="openProduct(${realIndex})"><img src="${p.imgs[0]}" onerror="this.src='https://via.placeholder.com/150/cccccc/ffffff?text=No+Image'"><h3>${p.name}</h3><div class="price">Rs ${p.price}</div><div class="stock">${p.stock || ''}</div><div class="delivery">${p.delivery || ''}</div><div class="cod">💵 ${p.cod || ''}</div></div>` }) document.getElementById('productList').innerHTML = html; }
 function loadProducts(){ displayProducts(products); }
-function loadAdminProducts(){
-  let html=''; if(products.length==0) html='No products';
-  products.forEach((p,i)=>{ html += `<div class="admin-product-item"><div class="admin-product-info"><b>${p.name}</b> - Rs ${p.price}<br><span style="color:#666;font-size:11px">${p.category}</span></div><div class="admin-product-btns"><button class="btn-edit-small" onclick="editProduct(${i})">✏️ Edit</button><button class="btn-del-small" onclick="deleteOne(${i})">🗑️ Delete</button></div></div>` })
-  document.getElementById('adminProductList').innerHTML = html;
-}
+function loadAdminProducts(){ let html=''; if(products.length==0) html='No products'; products.forEach((p,i)=>{ html += `<div class="admin-product-item"><div class="admin-product-info"><b>${p.name}</b> - Rs ${p.price}<br><span style="color:#666;font-size:11px">${p.category}</span></div><div class="admin-product-btns"><button class="btn-edit-small" onclick="editProduct(${i})">✏️ Edit</button><button class="btn-del-small" onclick="deleteOne(${i})">🗑️ Delete</button></div></div>` }) document.getElementById('adminProductList').innerHTML = html; }
 function deleteAll(){ if(confirm('Delete all products?')){ products = []; localStorage.setItem('BazarX_products', JSON.stringify(products)); loadProducts(); loadAdminProducts(); } }
 loadProducts();
 </script>
