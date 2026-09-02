@@ -67,26 +67,10 @@ body{background:#f5f5f5; padding-bottom:60px}
 .nav{display:flex;justify-content:space-around;background:white;padding:8px 0;position:fixed;bottom:0;width:100%;border-top:1px solid #ddd}
 .nav div{text-align:center;font-size:11px;color:#777;cursor:pointer}
 .nav div.active{color:#ff6600}
-
-/* NEW: Order Card */
 .order-card{background:white;margin:10px;padding:12px;border-radius:8px;border:1px solid #ddd;text-align:left}
 </style>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyDML6KChpxTEgrWyLppWQa3MoeJ2XWm_EU",
-  authDomain: "bazarx-online-shopping-pk.firebaseapp.com",
-  projectId: "bazarx-online-shopping-pk",
-  storageBucket: "bazarx-online-shopping-pk.firebasestorage.app",
-  messagingSenderId: "1016912747173",
-  appId: "1:1016912747173:web:8196956088d5b16f56cb4c",
-  measurementId: "G-G4E88BDRWK"
-};
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-</script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 </head>
 <body>
 
@@ -132,7 +116,6 @@ const firebaseConfig = {
   <div class="cart-total" id="cartTotal" style="display:none">Total: Rs <span id="totalPrice">0</span></div>
 </div>
 
-<!-- NEW PAGE: My Orders -->
 <div id="myOrders" class="page">
   <div class="back-btn" onclick="showPage('account')">← Back</div>
   <h3 style="padding:10px;background:white">My Orders</h3>
@@ -172,7 +155,6 @@ const firebaseConfig = {
       <p style="margin-bottom:10px;color:green">✅ Logged In</p>
       <p id="userName" style="font-weight:bold;font-size:16px"></p>
       <p id="userEmail" style="color:#666;font-size:13px;margin-bottom:15px"></p>
-      <!-- NEW BUTTON -->
       <button class="btn" style="background:#2196f3;margin-bottom:10px" onclick="showPage('myOrders'); loadMyOrders()">📦 My Orders</button>
       <button class="btn-logout" onclick="logout()">Sign Out</button>
     </div>
@@ -219,21 +201,22 @@ const firebaseConfig = {
 </div>
 
 <script>
-// ====== 1. APNA FIREBASE CONFIG YAHAN PASTE KAREN ======
+// ====== FIREBASE CONFIG - TUMHARI ASLI API ======
 const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY",
-  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
-  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
+  apiKey: "AIzaSyDML6ChpxTEgrWypWqDa3MoeJ2XWm_EU",
+  authDomain: "bazarx-online-shopping-pk.firebaseapp.com",
+  projectId: "bazarx-online-shopping-pk",
+  storageBucket: "bazarx-online-shopping-pk.firebasestorage.app",
+  messagingSenderId: "1016912747173",
+  appId: "1:1016912747173:web:8196956088d5b16f56cb4c",
+  measurementId: "G-G4E8BDRWK"
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 // =======================================================
 
 let products = JSON.parse(localStorage.getItem('BazarX_products')) || [];
-let orders = JSON.parse(localStorage.getItem('BazarX_orders')) || []; // NEW
+let orders = JSON.parse(localStorage.getItem('BazarX_orders')) || [];
 let tapCount = 0;
 let currentProductIndex = 0;
 let editingIndex = -1;
@@ -265,7 +248,7 @@ function showPage(pageId){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   if(pageId=='home') document.querySelectorAll('.nav-btn')[0].classList.add('active');
   if(pageId=='cart') {document.querySelectorAll('.nav-btn')[1].classList.add('active'); loadCart();}
-  if(pageId=='account') {document.querySelectorAll('.nav-btn')[2].classList.add('active');}
+  if(pageId=='account') {document.querySelectorAll('.nav-btn')[2].classList.add('active';}
   if(pageId=='service') document.querySelectorAll('.nav-btn')[3].classList.add('active');
   if(pageId=='home') loadProducts();
 }
@@ -344,7 +327,6 @@ function addToCart(){
   alert(p.name + ' Cart mein Add ho gaya!');
 }
 
-// UPDATED: Order ab save bhi hoga
 function submitOrder(){
   if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; }
   let name = custName.value; let phone = custPhone.value; let address = custAddress.value;
@@ -353,7 +335,7 @@ function submitOrder(){
 
   let newOrder = {
     id: Date.now(),
-    userEmail: currentUser.email, // har customer ka alag
+    userEmail: currentUser.email,
     product: p.name,
     price: p.price,
     name: name,
@@ -380,7 +362,6 @@ function loadCart(){
   document.getElementById('cartList').innerHTML = html;
 }
 
-// NEW FUNCTION: My Orders
 function loadMyOrders(){
   if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; }
   let userOrders = orders.filter(o => o.userEmail == currentUser.email);
@@ -388,9 +369,8 @@ function loadMyOrders(){
   if(userOrders.length == 0){
     html = '<div class="no-product">Abhi tak koi order nahi hai</div>';
   } else {
-    userOrders.reverse().forEach(o=>{
+    userOrders.reverse().forEach((o)=>{
       html += `<div class="order-card">
-        <b>Order ID:</b> ${o.id}<br>
         <b>Product:</b> ${o.product}<br>
         <b>Price:</b> Rs ${o.price}<br>
         <b>Name:</b> ${o.name}<br>
