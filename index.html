@@ -18,32 +18,6 @@ body{background:#f5f5f5; padding-bottom:60px}
 .page{display:none}
 .page.active{display:block}
 .no-product{text-align:center;padding:80px 20px;color:#666;font-size:16px;font-weight:500}
-.product-detail{background:white;margin:10px;border-radius:8px;padding:10px;margin-bottom:80px}
-.product-detail img{width:100%;height:300px;object-fit:cover;border-radius:8px;background:#eee}
-.detail-title{font-size:16px;font-weight:bold;margin:8px 0}
-.detail-price{font-size:22px;color:#ff6600;font-weight:bold}
-.bottom-btns{position:fixed;bottom:60px;width:100%;left:0;display:flex;gap:10px;padding:10px;background:white;border-top:1px solid #ddd;z-index:99}
-.btn-cart{flex:1;background:#ff6600;color:white;border:none;padding:14px;border-radius:8px;font-weight:bold;font-size:15px}
-.btn-order{flex:1;background:#00c853;color:white;border:none;padding:14px;border-radius:8px;font-weight:bold;font-size:15px}
-.order-form{background:white;margin:10px;padding:15px;border-radius:8px}
-.form-section{border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px}
-.form-title{display:flex;align-items:center;font-size:16px;font-weight:bold;color:#1a237e;margin-bottom:12px}
-.check-circle{width:30px;height:30px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:10px}
-.check-circle span{color:#4caf50;font-size:18px}
-.form-group{margin-bottom:12px;position:relative}
-.form-group label{position:absolute;top:-8px;left:12px;background:white;padding:0 5px;font-size:11px;color:#666}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:5px;font-size:14px}
-.btn-save{background:#00c853;color:white;border:none;padding:14px;width:100%;border-radius:8px;font-weight:bold;font-size:16px;cursor:pointer}
-.back-btn{padding:10px;background:white;border-bottom:1px solid #ddd;font-weight:bold;font-size:16px;cursor:pointer}
-.admin-panel{background:white;margin:10px;padding:15px;border-radius:8px}
-.admin-panel input,.admin-panel textarea,.admin-panel select{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:5px}
-.btn{background:#ff6600;color:white;border:none;padding:12px;width:100%;border-radius:5px;font-weight:bold;cursor:pointer}
-.help{background:#d4edda;color:#155724;padding:8px;border-radius:5px;font-size:12px;margin:5px 0}
-.admin-product-item{display:flex;justify-content:space-between;align-items:center;border:1px solid #ddd;padding:10px;margin:5px 0;border-radius:5px;font-size:13px;background:#fafafa;flex-direction:column;align-items:flex-start}
-.admin-product-info{width:100%;margin-bottom:8px}
-.admin-product-btns{display:flex;gap:8px;width:100%}
-.btn-edit-small{background:#2196f3;color:white;border:none;padding:6px 12px;border-radius:4px;font-size:12px;cursor:pointer;flex:1}
-.btn-del-small{background:red;color:white;border:none;padding:6px 12px;border-radius:4px;font-size:12px;cursor:pointer;flex:1}
 .product-list{padding:10px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .card{background:white;padding:10px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1);cursor:pointer}
 .card img{width:100%;height:150px;object-fit:cover;border-radius:5px;background:#eee}
@@ -52,24 +26,13 @@ body{background:#f5f5f5; padding-bottom:60px}
 .stock{color:green;font-size:11px}
 .delivery{color:#555;font-size:11px}
 .cod{color:#00c853;font-size:11px;font-weight:bold}
-.account-box{background:white;margin:10px;padding:20px;border-radius:8px;text-align:center}
-.btn-google{background:#db4437;color:white;padding:12px;border-radius:5px;width:100%;margin:5px 0;border:none;font-weight:bold;cursor:pointer}
-.btn-fb{background:#4267B2;color:white;padding:12px;border-radius:5px;width:100%;margin:5px 0;border:none;font-weight:bold;cursor:pointer}
-.btn-logout{background:#555;color:white;padding:12px;border-radius:5px;width:100%;margin:5px 0;border:none;font-weight:bold;cursor:pointer}
-.login-form-box{border:1px solid #ddd;padding:15px;border-radius:8px;margin-top:10px;text-align:left}
-.login-form-box h4{margin-bottom:10px;color:#333}
-.login-form-box a{color:#ff6600;font-size:12px;text-decoration:none}
-.service-box{background:white;margin:10px;padding:20px;border-radius:8px;text-align:center}
-.service-box a{color:#25D366;font-size:18px;font-weight:bold;text-decoration:none}
-.cart-item{display:flex;gap:10px;background:white;padding:10px;margin:10px;border-radius:8px}
-.cart-item img{width:80px;height:80px;object-fit:cover;border-radius:5px}
-.cart-info{flex:1}
-.cart-total{position:fixed;bottom:60px;width:100%;background:white;padding:15px;border-top:1px solid #ddd;font-weight:bold;font-size:16px}
+.admin-panel{background:white;margin:10px;padding:15px;border-radius:8px}
+.admin-panel input,.admin-panel textarea,.admin-panel select{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:5px}
+.btn{background:#ff6600;color:white;border:none;padding:12px;width:100%;border-radius:5px;font-weight:bold;cursor:pointer}
+.admin-product-item{display:flex;justify-content:space-between;border:1px solid #ddd;padding:10px;margin:5px 0;border-radius:5px;font-size:13px;background:#fafafa;flex-direction:column}
 .nav{display:flex;justify-content:space-around;background:white;padding:8px 0;position:fixed;bottom:0;width:100%;border-top:1px solid #ddd}
 .nav div{text-align:center;font-size:11px;color:#777;cursor:pointer}
 .nav div.active{color:#ff6600}
-.order-card{background:white;margin:10px;padding:12px;border-radius:8px;border:1px solid #ddd;text-align:left}
-.admin-order-card{background:#fff3e0;margin:10px 0;padding:12px;border-radius:8px;border-left:4px solid #ff6600;text-align:left;font-size:13px}
 </style>
 </head>
 <body>
@@ -78,337 +41,121 @@ body{background:#f5f5f5; padding-bottom:60px}
 
 <div id="home" class="page active">
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Search in BazarX Online Shop">
+    <input type="text" id="searchInput" placeholder="Search in BazarX">
     <button onclick="searchProduct()">Search</button>
   </div>
   <div class="categories">
-    <div class="cat" onclick="filterCategory('Mobile')"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&h=200&fit=crop"><p>Mobile</p></div>
-    <div class="cat" onclick="filterCategory('Fashion')"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200&h=200&fit=crop"><p>Fashion</p></div>
-    <div class="cat" onclick="filterCategory('Grocery')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200&h=200&fit=crop"><p>Grocery</p></div>
-    <div class="cat" onclick="filterCategory('Beauty')"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200&h=200&fit=crop"><p>Beauty</p></div>
+    <div class="cat" onclick="filterCategory('Mobile')"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"><p>Mobile</p></div>
+    <div class="cat" onclick="filterCategory('Fashion')"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200"><p>Fashion</p></div>
+    <div class="cat" onclick="filterCategory('Grocery')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"><p>Grocery</p></div>
+    <div class="cat" onclick="filterCategory('Beauty')"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200"><p>Beauty</p></div>
   </div>
   <div id="productList" class="product-list"></div>
 </div>
 
-<div id="orderForm" class="page">
-  <div class="back-btn" onclick="showPage('productDetail')">← Place Order</div>
-  <div class="order-form">
-    <div class="form-section">
-      <div class="form-title"><div class="check-circle"><span>✓</span></div>Contact Details</div>
-      <div class="form-group"><label>Your Name</label><input type="text" id="custName" placeholder="Enter your name"></div>
-      <div class="form-group"><label>Phone Number</label><input type="text" id="custPhone" placeholder="+92"></div>
-      <div class="form-group"><label>Doosra Mobile Number (Optional)</label><input type="text" id="custPhone2" placeholder="+92"></div>
-    </div>
-    <div class="form-section">
-      <div class="form-title"><div class="check-circle"><span>✓</span></div>Address Details</div>
-      <div class="form-group"><label>City</label><select id="custCity"><option>Karachi</option><option>Lahore</option><option>Islamabad</option><option>Rawalpindi</option><option>Other</option></select></div>
-      <div class="form-group"><label>Sector / Block / Area Name</label><input type="text" id="custArea" placeholder="##########"></div>
-      <div class="form-group"><label>Full Address</label><textarea id="custAddress" rows="3" placeholder="##########"></textarea></div>
-      <div class="form-group"><label>Mashoor Jagah (Optional)</label><input type="text" id="custLandmark" placeholder="##########"></div>
-    </div>
-    <button class="btn-save" onclick="submitOrder()">Place Order</button>
-  </div>
-</div>
-
-<div id="cart" class="page">
-  <h3 style="padding:10px;background:white">My Cart</h3>
-  <div id="cartList"></div>
-  <div class="cart-total" id="cartTotal" style="display:none">Total: Rs <span id="totalPrice">0</span></div>
-</div>
-
-<div id="myOrders" class="page">
-  <div class="back-btn" onclick="showPage('account')">← Back</div>
-  <h3 style="padding:10px;background:white">My Orders</h3>
-  <div id="myOrdersList"></div>
-</div>
-
-<div id="productDetail" class="page">
-  <div class="product-detail">
-    <img id="dImg" onerror="this.src='https://via.placeholder.com/300/cccccc/ffffff?text=No+Image'">
-    <div class="detail-title" id="dName"></div>
-    <div class="detail-price" id="dPrice"></div>
-    <div id="dStock"></div>
-    <div id="dDelivery"></div>
-    <div id="dCOD"></div>
-    <p id="dDesc" style="margin-top:10px;color:#555;line-height:1.6"></p>
-  </div>
-  <div class="bottom-btns">
-    <button class="btn-cart" onclick="addToCart()">🛒 Add to Cart</button>
-    <button class="btn-order" onclick="showPage('orderForm')">📦 Place Order</button>
-  </div>
-</div>
-
-<div id="account" class="page">
-  <div class="account-box">
-    <h3>Sign In</h3>
-    <div id="loginButtons">
-      <button class="btn-google" onclick="showLoginForm('Google')">G Sign in with Google</button>
-      <button class="btn-fb" onclick="showLoginForm('Facebook')">f Sign in with Facebook</button>
-    </div>
-
-    <div id="loginFormBox" class="login-form-box" style="display:none">
-      <h4 id="loginTitle">Login</h4>
-      <div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="Enter your email"></div>
-      <div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter password"></div>
-      <button class="btn-save" onclick="doLogin()">Sign In</button>
-      <p style="text-align:right;margin-top:8px"><a href="#" onclick="alert('Password Reset Link Sent to Email - Demo')">Forgot Password?</a></p>
-      <button class="btn" style="background:#777;margin-top:10px" onclick="hideLoginForm()">Cancel</button>
-    </div>
-
-    <div id="userProfile" style="display:none">
-      <p style="margin-bottom:10px">✅ Logged In</p>
-      <p id="userName" style="font-weight:bold;font-size:16px"></p>
-      <p id="userEmail" style="color:#666;font-size:13px;margin-bottom:15px"></p>
-      <button class="btn" style="background:#2196f3;margin-bottom:10px" onclick="showPage('myOrders'); loadMyOrders()">📦 My Orders</button>
-      <button class="btn-logout" onclick="logout()">Sign Out</button>
-    </div>
-  </div>
-</div>
-
-<div id="service" class="page">
-  <div class="service-box">
-    <h3>Customer Support</h3>
-    <p>Contact us for any complaint or query</p>
-    <a href="https://wa.me/923412255124" target="_blank">📱 WhatsApp: 0341-2255124</a>
-  </div>
-</div>
-
 <div id="admin" class="page">
   <div class="admin-panel">
-    <h3 id="adminFormTitle">Add Product</h3>
+    <h3>Add Product</h3>
     <input id="pName" placeholder="Product Name">
     <input id="pPrice" type="number" placeholder="Price Rs">
-    <input id="pCategory" placeholder="Category: Mobile, Fashion, Grocery, Beauty">
-    <input id="pStock" placeholder="Stock: 100 in Stock">
-    <input id="pDelivery" placeholder="Delivery: Delivery in 5 to 7 days">
-    <select id="pCOD">
-      <option value="Cash on Delivery Available">Cash on Delivery Available</option>
-      <option value="Advance Payment Only">Advance Payment Only</option>
-    </select>
-    <textarea id="pDesc" rows="4" placeholder="Product Description"></textarea>
-    <div class="help"><b>Images:</b> Copy "Direct Link" from postimages.org. Each link in new line</div>
-    <textarea id="pImgs" rows="4" placeholder="https://i.postimg.cc/xxx/1.jpg"></textarea>
-    <button class="btn" id="saveProductBtn" onclick="addProduct()">Add Product</button>
-    <button class="btn" style="background:#555;margin-top:8px" onclick="cancelEdit()">Cancel</button>
+    <input id="pStock" placeholder="Stock">
+    <input id="pDelivery" placeholder="Delivery">
+    <input id="pImgs" placeholder="Image URL">
+    <button class="btn" onclick="addProduct()">Add Product</button>
     <button class="btn" style="background:#777;margin-top:8px" onclick="showPage('home')">Back to Home</button>
-
     <h3 style="margin-top:15px">Your Products</h3>
     <div id="adminProductList"></div>
-    <button class="btn" style="background:red;margin-top:10px" onclick="deleteAll()">Delete All Products</button>
-
-    <!-- NEW: ADMIN ORDERS SECTION -->
-    <h3 style="margin-top:20px;border-top:2px solid #ff6600;padding-top:10px">📦 All Customer Orders</h3>
-    <div id="adminOrdersList"></div>
-    <button class="btn" style="background:#f44336;margin-top:10px" onclick="deleteAllOrders()">Delete All Orders</button>
   </div>
 </div>
 
 <div class="nav">
   <div class="nav-btn active" onclick="showPage('home')">🏠<br>Home</div>
-  <div class="nav-btn" onclick="showPage('cart')">🛒<br>Cart</div>
-  <div class="nav-btn" onclick="showPage('account')">👤<br>Account</div>
-  <div class="nav-btn" onclick="showPage('service')">📞<br>Service</div>
+  <div class="nav-btn" onclick="alert('Cart Coming Soon')">🛒<br>Cart</div>
+  <div class="nav-btn" onclick="alert('Account Coming Soon')">👤<br>Account</div>
+  <div class="nav-btn" onclick="alert('Service Coming Soon')">📞<br>Service</div>
 </div>
 
-<script>
-let products = JSON.parse(localStorage.getItem('BazarX_products')) || [];
-let allOrders = JSON.parse(localStorage.getItem('BazarX_orders')) || [];
-let tapCount = 0;
-let currentProductIndex = 0;
-let editingIndex = -1;
-let loginType = '';
-let currentUser = null;
+<!-- FIREBASE SDK -->
+<script type="module">
+  // 1. TUMHARA FIREBASE CONFIG
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-function getCartKey(){ return currentUser? 'BazarX_cart_' + currentUser.email : 'BazarX_cart_guest'; }
-function getCart(){ return JSON.parse(localStorage.getItem(getCartKey())) || []; }
-function saveCart(cart){ localStorage.setItem(getCartKey(), JSON.stringify(cart)); }
+  const firebaseConfig = {
+    apiKey: "AIzaSyDEb6q9F8escjPjr-9JeSJNiYppCKLzU8E",
+    authDomain: "bazarx-c910c.firebaseapp.com",
+    projectId: "bazarx-c910c",
+    storageBucket: "bazarx-c910c.firebasestorage.app",
+    messagingSenderId: "262979651725",
+    appId: "1:262979651725:web:07d4cb80d338517a393ac4",
+    measurementId: "G-RRBY6T1FKW"
+  };
 
-function secretAdmin(){
-  tapCount++; setTimeout(()=>{tapCount=0}, 2000);
-  if(tapCount >= 10){
-    let pass = prompt("Enter Admin Password:");
-    if(pass == 'admin123'){ showPage('admin'); loadAdminProducts(); loadAdminOrders(); }
-    tapCount = 0;
+  // 2. FIREBASE START
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  let tapCount = 0;
+  let products = [];
+
+  window.secretAdmin = function(){
+    tapCount++; setTimeout(()=>{tapCount=0}, 2000);
+    if(tapCount >= 10){
+      let pass = prompt("Enter Admin Password:");
+      if(pass == 'admin123'){ showPage('admin'); loadAdminProducts(); }
+      tapCount = 0;
+    }
   }
-}
-function showPage(pageId){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(pageId).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  if(pageId=='home') document.querySelectorAll('.nav-btn')[0].classList.add('active');
-  if(pageId=='cart') {document.querySelectorAll('.nav-btn')[1].classList.add('active'); loadCart();}
-  if(pageId=='account') {document.querySelectorAll('.nav-btn')[2].classList.add('active'); showUser();}
-  if(pageId=='service') document.querySelectorAll('.nav-btn')[3].classList.add('active');
-  if(pageId=='home') loadProducts();
-  if(pageId=='admin') {loadAdminProducts(); loadAdminOrders();} // UPDATED
-}
-function searchProduct(){
-  let query = document.getElementById('searchInput').value.toLowerCase();
-  if(query == ''){ loadProducts(); return; }
-  let filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
-  displayProducts(filtered);
-}
-function filterCategory(cat){
-  let filtered = products.filter(p => p.category.toLowerCase() == cat.toLowerCase());
-  displayProducts(filtered);
-}
-
-function showLoginForm(type){
-  loginType = type;
-  document.getElementById('loginTitle').innerText = 'Sign in with ' + type;
-  document.getElementById('loginFormBox').style.display = 'block';
-  document.getElementById('loginButtons').style.display = 'none';
-}
-function hideLoginForm(){
-  document.getElementById('loginFormBox').style.display = 'none';
-  document.getElementById('loginButtons').style.display = 'block';
-}
-function doLogin(){
-  let email = document.getElementById('loginEmail').value;
-  let password = document.getElementById('loginPassword').value;
-  if(!email ||!password){ alert('Please enter Email and Password'); return; }
-
-  currentUser = {name: email.split('@')[0], email: email, type: loginType};
-  localStorage.setItem('BazarX_user', JSON.stringify(currentUser));
-  document.getElementById('loginEmail').value = '';
-  document.getElementById('loginPassword').value = '';
-  hideLoginForm();
-  showUser();
-  loadCart();
-}
-
-function showUser(){
-  currentUser = JSON.parse(localStorage.getItem('BazarX_user'));
-  if(currentUser){
-    document.getElementById('loginButtons').style.display = 'none';
-    document.getElementById('loginFormBox').style.display = 'none';
-    document.getElementById('userProfile').style.display = 'block';
-    document.getElementById('userName').innerText = currentUser.name;
-    document.getElementById('userEmail').innerText = currentUser.email + ' via ' + currentUser.type;
-  } else {
-    document.getElementById('loginButtons').style.display = 'block';
-    document.getElementById('userProfile').style.display = 'none';
+  
+  window.showPage = function(pageId){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
   }
-}
 
-function logout(){
-  localStorage.removeItem('BazarX_user');
-  currentUser = null;
-  showUser();
-  loadCart();
-}
-
-function openProduct(i){
-  currentProductIndex = i; let p = products[i];
-  document.getElementById('dImg').src = p.imgs[0]; document.getElementById('dName').innerText = p.name; document.getElementById('dPrice').innerText = 'Rs ' + p.price;
-  document.getElementById('dStock').innerText = p.stock; document.getElementById('dDelivery').innerText = p.delivery; document.getElementById('dCOD').innerText = '💵 ' + p.cod; document.getElementById('dDesc').innerText = p.desc;
-  showPage('productDetail');
-}
-function addToCart(){
-  if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; }
-  let p = products[currentProductIndex];
-  let cart = getCart();
-  cart.push(p);
-  saveCart(cart);
-  alert(p.name + ' Cart mein Add ho gaya!');
-}
-function submitOrder(){
-  if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; }
-  let name = custName.value; let phone = custPhone.value; let address = custAddress.value;
-  if(!name ||!phone ||!address){ alert('Please fill Name, Phone and Address'); return; }
-  let p = products[currentProductIndex];
-  let newOrder = {id: Date.now(), userEmail: currentUser.email, product: p.name, price: p.price, name: name, phone: phone, address: address, date: new Date().toLocaleString(), status: "Pending"};
-  allOrders.push(newOrder);
-  localStorage.setItem('BazarX_orders', JSON.stringify(allOrders));
-  alert('Order Placed Successfully!\n\nProduct: ' + p.name + '\nName: ' + name + '\nPhone: ' + phone + '\nWe will contact you soon');
-  showPage('home');
-}
-function loadCart(){
-  let cart = getCart();
-  let html = ''; let total = 0;
-  if(cart.length == 0){ html = '<div class="no-product">Your Cart is Empty<br>Add some products</div>'; document.getElementById('cartTotal').style.display = 'none'; }
-  else {
-    cart.forEach((p,i)=>{ total += parseInt(p.price); html += `<div class="cart-item"><img src="${p.imgs[0]}"><div class="cart-info"><b>${p.name}</b><br><div class="price">Rs ${p.price}</div></div></div>` })
-    document.getElementById('cartTotal').style.display = 'block'; document.getElementById('totalPrice').innerText = total;
+  // 3. FIREBASE SE PRODUCT LOAD - REAL TIME
+  function loadProducts(){
+    onSnapshot(collection(db, "products"), (snapshot) => {
+      products = [];
+      snapshot.forEach((doc) => { products.push({id: doc.id, ...doc.data()}); });
+      displayProducts(products);
+    });
   }
-  document.getElementById('cartList').innerHTML = html;
-}
 
-function loadMyOrders(){
-  if(!currentUser){ alert('Pehle Login karen'); showPage('account'); return; }
-  let userOrders = allOrders.filter(o => o.userEmail == currentUser.email);
-  let html = '';
-  if(userOrders.length == 0){ html = '<div class="no-product">Abhi tak koi order nahi hai</div>'; }
-  else {
-    userOrders.reverse().forEach((o)=>{
-      html += `<div class="order-card"><b>Product:</b> ${o.product}<br><b>Price:</b> Rs ${o.price}<br><b>Name:</b> ${o.name}<br><b>Date:</b> ${o.date}<br><b>Status:</b> <span style="color:orange">${o.status}</span></div>`;
-    })
+  function displayProducts(productArray){
+    let html=''; 
+    if(productArray.length==0){ html='<div class="no-product">No products yet. Add from Admin</div>'; }
+    productArray.forEach((p)=>{ 
+      html += `<div class="card"><img src="${p.imgs}"><h3>${p.name}</h3><div class="price">Rs ${p.price}</div><div class="stock">Stock: ${p.stock}</div><div class="delivery">${p.delivery}</div><div class="cod">💵 Cash on Delivery Available</div></div>`;
+    });
+    document.getElementById('productList').innerHTML = html;
   }
-  document.getElementById('myOrdersList').innerHTML = html;
-}
 
-// NEW FUNCTION FOR ADMIN
-function loadAdminOrders(){
-  let html = '';
-  if(allOrders.length == 0){ html = '<div class="no-product">Abhi tak koi order nahi aya</div>'; }
-  else {
-    allOrders.reverse().forEach((o)=>{
-      html += `<div class="admin-order-card">
-        <b>Order ID:</b> ${o.id}<br>
-        <b>Customer:</b> ${o.name}<br>
-        <b>Email:</b> ${o.userEmail}<br>
-        <b>Phone:</b> ${o.phone}<br>
-        <b>Product:</b> ${o.product} - Rs ${o.price}<br>
-        <b>Address:</b> ${o.address}<br>
-        <b>Date:</b> ${o.date}<br>
-        <b>Status:</b> <span style="color:orange">${o.status}</span>
-      </div>`;
-    })
+  // 4. FIREBASE ME PRODUCT ADD
+  window.addProduct = async function(){
+    if(!pName.value) return alert('Name likho');
+    await addDoc(collection(db, "products"), {
+      name: pName.value,
+      price: pPrice.value,
+      stock: pStock.value,
+      delivery: pDelivery.value,
+      imgs: pImgs.value,
+      category: 'General'
+    });
+    alert('Product Added!'); 
+    pName.value=''; pPrice.value=''; pStock.value=''; pDelivery.value=''; pImgs.value='';
   }
-  document.getElementById('adminOrdersList').innerHTML = html;
-}
 
-function deleteAllOrders(){
-  if(confirm('Are you sure to delete ALL orders?')){
-    allOrders = [];
-    localStorage.setItem('BazarX_orders', JSON.stringify(allOrders));
-    loadAdminOrders();
-    alert('All Orders Deleted');
+  window.loadAdminProducts = async function(){
+    const snapshot = await getDocs(collection(db, "products"));
+    let html=''; 
+    snapshot.forEach((doc) => { 
+      let p = doc.data();
+      html += `<div class="admin-product-item"><b>${p.name}</b> - Rs ${p.price}</div>` 
+    });
+    document.getElementById('adminProductList').innerHTML = html;
   }
-}
 
-function editProduct(i){
-  editingIndex = i; let p = products[i];
-  pName.value = p.name; pPrice.value = p.price; pCategory.value = p.category; pStock.value = p.stock; pDelivery.value = p.delivery; pCOD.value = p.cod; pDesc.value = p.desc; pImgs.value = p.imgs.join('\n');
-  document.getElementById('adminFormTitle').innerText = 'Edit Product'; document.getElementById('saveProductBtn').innerText = 'Update Product'; window.scrollTo(0,0);
-}
-function cancelEdit(){
-  editingIndex = -1; document.getElementById('adminFormTitle').innerText = 'Add Product'; document.getElementById('saveProductBtn').innerText = 'Add Product';
-  pName.value=''; pPrice.value=''; pCategory.value=''; pStock.value=''; pDelivery.value=''; pDesc.value=''; pImgs.value='';
-}
-function addProduct(){
-  if(!pName.value) return alert('Please enter Product Name'); if(!pPrice.value) return alert('Please enter Price');
-  let imgArray = pImgs.value.split('\n').filter(url => url.trim()!= ''); if(imgArray.length==0) return alert('Please add at least 1 image');
-  let productData = {name:pName.value,price:pPrice.value,category:pCategory.value,stock:pStock.value,delivery:pDelivery.value,cod:pCOD.value,desc:pDesc.value,imgs:imgArray};
-  if(editingIndex >= 0){ products[editingIndex] = productData; alert('Product Updated Successfully'); cancelEdit(); }
-  else { products.push(productData); alert('Product Added Successfully'); pName.value=''; pPrice.value=''; pCategory.value=''; pStock.value=''; pDelivery.value=''; pDesc.value=''; pImgs.value=''; }
-  localStorage.setItem('BazarX_products', JSON.stringify(products)); loadAdminProducts(); loadProducts();
-}
-function deleteOne(i){
-  if(confirm('Are you sure to delete this product?')){ products.splice(i,1); localStorage.setItem('BazarX_products', JSON.stringify(products)); loadAdminProducts(); loadProducts(); }
-}
-function displayProducts(productArray){
-  let html=''; if(productArray.length==0){ html='<div class="no-product">No products found</div>'; }
-  productArray.forEach((p,i)=>{ let realIndex = products.indexOf(p);
-    html += `<div class="card" onclick="openProduct(${realIndex})"><img src="${p.imgs[0]}" onerror="this.src='https://via.placeholder.com/150/cccccc/ffffff?text=No+Image'"><h3>${p.name}</h3><div class="price">Rs ${p.price}</div><div class="stock">${p.stock || ''}</div><div class="delivery">${p.delivery || ''}</div><div class="cod">💵 ${p.cod || ''}</div></div>`;
-  });
-  document.getElementById('productList').innerHTML = html;
-}
-function loadProducts(){ displayProducts(products); }
-function loadAdminProducts(){ let html=''; if(products.length==0) html='No products'; products.forEach((p,i)=>{ html += `<div class="admin-product-item"><div class="admin-product-info"><b>${p.name}</b> - Rs ${p.price}<br><span style="color:#666;font-size:11px">${p.category}</span></div><div class="admin-product-btns"><button class="btn-edit-small" onclick="editProduct(${i})">✏️ Edit</button><button class="btn-del-small" onclick="deleteOne(${i})">🗑️ Delete</button></div></div>` }); document.getElementById('adminProductList').innerHTML = html; }
-function deleteAll(){ if(confirm('Delete all products?')){ products = []; localStorage.setItem('BazarX_products', JSON.stringify(products)); loadProducts(); loadAdminProducts(); } }
-loadProducts();
-showUser();
+  loadProducts(); // Page load hote hi product uthao
 </script>
 </body>
 </html>
