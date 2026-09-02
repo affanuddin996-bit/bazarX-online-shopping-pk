@@ -103,10 +103,16 @@ import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://w
   }
   
   window.showPage = function(pageId){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-    if(pageId == 'admin'){ loadAdminProducts(); } // <-- YE LINE ADD KI
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  
+  // <-- YE PURANI LINE HATAO AUR YE NAYI LAGAO
+  if(pageId == 'admin'){ 
+    loadAdminProducts(); 
+  } else { 
+    loadProducts(); 
   }
+}
 
   function loadProducts(){
     onSnapshot(collection(db, "products"), (snapshot) => {
