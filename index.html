@@ -11,8 +11,8 @@ body{background:#f5f5f5; padding-bottom:60px}
 .search-box{display:flex;padding:10px;background:#ff6600;gap:8px;align-items:center}
 .search-box input{flex:1;padding:12px;border:none;border-radius:25px;font-size:14px}
 .search-box button{background:#ff4400;color:white;border:none;padding:12px 20px;border-radius:25px;font-weight:bold;cursor:pointer}
-.categories{display:flex;justify-content:space-around;background:white;padding:15px 0}
-.cat{text-align:center;cursor:pointer}
+.categories{display:flex;justify-content:space-around;background:white;padding:15px 0;flex-wrap:wrap}
+.cat{text-align:center;cursor:pointer;width:24%}
 .cat img{width:70px;height:70px;border-radius:15px;object-fit:cover;background:#f0f0f0;border:1px solid #eee}
 .cat p{font-size:12px;margin-top:6px;color:#333;font-weight:500}
 .page{display:none}
@@ -27,11 +27,11 @@ body{background:#f5f5f5; padding-bottom:60px}
 .delivery{color:#555;font-size:11px}
 .cod{color:#00c853;font-size:11px;font-weight:bold}
 .admin-panel{background:white;margin:10px;padding:15px;border-radius:8px}
-.admin-panel input{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:5px}
+.admin-panel input,.admin-panel textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:5px}
 .btn{background:#ff6600;color:white;border:none;padding:12px;width:100%;border-radius:5px;font-weight:bold;cursor:pointer}
-.admin-product-item{border:1px solid #ddd;padding:10px;margin:5px 0;border-radius:5px;font-size:13px;background:#fafafa}
+.admin-product-item{display:flex;justify-content:space-between;border:1px solid #ddd;padding:10px;margin:5px 0;border-radius:5px;font-size:13px;background:#fafafa;flex-direction:column}
 .nav{display:flex;justify-content:space-around;background:white;padding:8px 0;position:fixed;bottom:0;width:100%;border-top:1px solid #ddd}
-.nav-btn{text-align:center;font-size:11px;color:#777;cursor:pointer;flex:1}
+.nav-btn{text-align:center;font-size:11px;color:#777;cursor:pointer;flex:1} /* THEEK KIYA */
 .nav-btn.active{color:#ff6600}
 </style>
 </head>
@@ -45,10 +45,10 @@ body{background:#f5f5f5; padding-bottom:60px}
     <button onclick="searchProduct()">Search</button>
   </div>
   <div class="categories">
-    <div class="cat" onclick="alert('Mobile - Coming Soon')"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"><p>Mobile</p></div>
-    <div class="cat" onclick="alert('Fashion - Coming Soon')"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200"><p>Fashion</p></div>
-    <div class="cat" onclick="alert('Grocery - Coming Soon')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"><p>Grocery</p></div>
-    <div class="cat" onclick="alert('Beauty - Coming Soon')"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200"><p>Beauty</p></div>
+    <div class="cat" onclick="filterCategory('Mobile')"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"><p>Mobile</p></div>
+    <div class="cat" onclick="filterCategory('Fashion')"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200"><p>Fashion</p></div>
+    <div class="cat" onclick="filterCategory('Grocery')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"><p>Grocery</p></div>
+    <div class="cat" onclick="filterCategory('Beauty')"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200"><p>Beauty</p></div>
   </div>
   <div id="productList" class="product-list"></div>
 </div>
@@ -59,7 +59,7 @@ body{background:#f5f5f5; padding-bottom:60px}
     <input id="pName" placeholder="Product Name">
     <input id="pPrice" type="number" placeholder="Price Rs">
     <input id="pStock" placeholder="Stock">
-    <input id="pDelivery" placeholder="Delivery Info">
+    <input id="pDelivery" placeholder="Delivery">
     <input id="pImgs" placeholder="Image URL">
     <button class="btn" onclick="addProduct()">Add Product</button>
     <button class="btn" style="background:#777;margin-top:8px" onclick="showPage('home')">Back to Home</button>
@@ -76,9 +76,8 @@ body{background:#f5f5f5; padding-bottom:60px}
 </div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
-  import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
+import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
   const firebaseConfig = {
     apiKey: "AIzaSyDEb6q9F8escjPjr-9JeSJNiYppCKLzU8E",
     authDomain: "bazarx-c910c.firebaseapp.com",
@@ -91,16 +90,13 @@ body{background:#f5f5f5; padding-bottom:60px}
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   let tapCount = 0;
+  let allProducts = []; // SEARCH KE LIYE
 
   window.secretAdmin = function(){
-    tapCount++; 
-    setTimeout(()=>{tapCount=0}, 2000);
+    tapCount++; setTimeout(()=>{tapCount=0}, 2000);
     if(tapCount >= 10){
       let pass = prompt("Enter Admin Password:");
-      if(pass == 'admin123'){ 
-        showPage('admin'); 
-        loadAdminProducts(); 
-      }
+      if(pass == 'admin123'){ showPage('admin'); loadAdminProducts(); }
       tapCount = 0;
     }
   }
@@ -110,47 +106,54 @@ body{background:#f5f5f5; padding-bottom:60px}
     document.getElementById(pageId).classList.add('active');
     document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
     if(pageId == 'home') document.querySelector('.nav-btn').classList.add('active');
-    if(pageId == 'admin'){ loadAdminProducts(); }
+
+    if(pageId == 'admin'){ 
+      loadAdminProducts(); 
+    }
   } 
 
   function loadProducts(){
-    const q = collection(db, "products");
-    onSnapshot(q, (snapshot) => {
-      let products = [];
-      snapshot.forEach((doc) => { products.push({id: doc.id, ...doc.data()}); });
-      let html=''; 
-      if(products.length==0){ 
-        html='<div class="no-product">No products yet. Add from Admin Panel</div>'; 
-      } else {
-        products.forEach((p)=>{ 
-          html += `<div class="card">
-            <img src="${p.imgs}" onerror="this.src='https://i.imgur.com/8Km9tLL.jpg'">
-            <h3>${p.name}</h3>
-            <div class="price">Rs ${p.price}</div>
-            <div class="stock">Stock: ${p.stock}</div>
-            <div class="delivery">${p.delivery}</div>
-            <div class="cod">💵 Cash on Delivery</div>
-          </div>`;
-        });
-      }
-      document.getElementById('productList').innerHTML = html;
+    onSnapshot(collection(db, "products"), (snapshot) => {
+      allProducts = [];
+      snapshot.forEach((doc) => { allProducts.push({id: doc.id, ...doc.data()}); });
+      displayProducts(allProducts);
+    }, (error) => {
+      document.getElementById('productList').innerHTML = '<div class="no-product">Firebase Error: '+error.message+'</div>';
     });
   }
 
+  function displayProducts(products){
+    let html=''; 
+    if(products.length==0){ html='<div class="no-product">No products yet. Add from Admin</div>'; }
+    products.forEach((p)=>{ 
+      html += `<div class="card"><img src="${p.imgs}" onerror="this.src='https://i.imgur.com/8Km9tLL.jpg'"><h3>${p.name}</h3><div class="price">Rs ${p.price}</div><div class="stock">Stock: ${p.stock}</div><div class="delivery">${p.delivery}</div><div class="cod">💵 Cash on Delivery Available</div></div>`;
+    });
+    document.getElementById('productList').innerHTML = html;
+  }
+
+  // NAYE FUNCTION
   window.searchProduct = function(){
-    alert('Search - Coming Soon');
+    let term = document.getElementById('searchInput').value.toLowerCase();
+    let filtered = allProducts.filter(p => p.name.toLowerCase().includes(term));
+    displayProducts(filtered);
+  }
+
+  window.filterCategory = function(cat){
+    alert(cat + ' - Coming Soon');
+    displayProducts(allProducts);
   }
 
   window.addProduct = async function(){
-    if(!document.getElementById('pName').value) return alert('Product Name likho');
+    if(!document.getElementById('pName').value) return alert('Name likho');
     await addDoc(collection(db, "products"), {
       name: document.getElementById('pName').value, 
       price: document.getElementById('pPrice').value, 
       stock: document.getElementById('pStock').value,
       delivery: document.getElementById('pDelivery').value, 
-      imgs: document.getElementById('pImgs').value
+      imgs: document.getElementById('pImgs').value, 
+      category: 'General'
     });
-    alert('Product Added Successfully!'); 
+    alert('Product Added!'); 
     document.getElementById('pName').value='';
     document.getElementById('pPrice').value='';
     document.getElementById('pStock').value='';
@@ -169,7 +172,7 @@ body{background:#f5f5f5; padding-bottom:60px}
     document.getElementById('adminProductList').innerHTML = html;
   }
 
-  loadProducts(); // PAGE LOAD HOTE HI PRODUCTS
+  loadProducts();
 </script>
 </body>
 </html>
