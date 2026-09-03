@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BazarX Online Shop</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f5f5f5; padding-bottom:60px}
@@ -31,148 +32,675 @@ body{background:#f5f5f5; padding-bottom:60px}
 .btn{background:#ff6600;color:white;border:none;padding:12px;width:100%;border-radius:5px;font-weight:bold;cursor:pointer}
 .admin-product-item{display:flex;justify-content:space-between;border:1px solid #ddd;padding:10px;margin:5px 0;border-radius:5px;font-size:13px;background:#fafafa;flex-direction:column}
 .nav{display:flex;justify-content:space-around;background:white;padding:8px 0;position:fixed;bottom:0;width:100%;border-top:1px solid #ddd}
-.nav-btn{text-align:center;font-size:11px;color:#777;cursor:pointer;flex:1} /* THEEK KIYA */
+.nav-btn{text-align:center;font-size:11px;color:#777;cursor:pointer;flex:1}
 .nav-btn.active{color:#ff6600}
 </style>
 </head>
+
 <body>
 
 <div class="header" onclick="secretAdmin()">BazarX Online Shop</div>
 
 <div id="home" class="page active">
+
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="Search in BazarX">
     <button onclick="searchProduct()">Search</button>
   </div>
+
   <div class="categories">
-    <div class="cat" onclick="filterCategory('Mobile')"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"><p>Mobile</p></div>
-    <div class="cat" onclick="filterCategory('Fashion')"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200"><p>Fashion</p></div>
-    <div class="cat" onclick="filterCategory('Grocery')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"><p>Grocery</p></div>
-    <div class="cat" onclick="filterCategory('Beauty')"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200"><p>Beauty</p></div>
+
+    <div class="cat" onclick="filterCategory('Mobile')">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200">
+      <p>Mobile</p>
+    </div>
+
+    <div class="cat" onclick="filterCategory('Fashion')">
+      <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200">
+      <p>Fashion</p>
+    </div>
+
+    <div class="cat" onclick="filterCategory('Grocery')">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200">
+      <p>Grocery</p>
+    </div>
+
+    <div class="cat" onclick="filterCategory('Beauty')">
+      <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200">
+      <p>Beauty</p>
+    </div>
+
   </div>
+
   <div id="productList" class="product-list"></div>
+
 </div>
+
 
 <div id="admin" class="page">
+
   <div class="admin-panel">
+
     <h3>Add Product</h3>
+
     <input id="pName" placeholder="Product Name">
+
     <input id="pPrice" type="number" placeholder="Price Rs">
+
     <input id="pStock" placeholder="Stock">
+
     <input id="pDelivery" placeholder="Delivery">
+
     <input id="pImgs" placeholder="Image URL">
-    <button class="btn" onclick="addProduct()">Add Product</button>
-    <button class="btn" style="background:#777;margin-top:8px" onclick="showPage('home')">Back to Home</button>
-    <h3 style="margin-top:15px">Your Products</h3>
+
+    <button class="btn" onclick="addProduct()">
+      Add Product
+    </button>
+
+    <button
+      class="btn"
+      style="background:#777;margin-top:8px"
+      onclick="showPage('home')">
+      Back to Home
+    </button>
+
+    <h3 style="margin-top:15px">
+      Your Products
+    </h3>
+
     <div id="adminProductList"></div>
+
   </div>
+
 </div>
+
 
 <div class="nav">
-  <div class="nav-btn active" onclick="showPage('home')">🏠<br>Home</div>
-  <div class="nav-btn" onclick="alert('Cart Coming Soon')">🛒<br>Cart</div>
-  <div class="nav-btn" onclick="alert('Account Coming Soon')">👤<br>Account</div>
-  <div class="nav-btn" onclick="alert('Service Coming Soon')">📞<br>Service</div>
+
+  <div class="nav-btn active" onclick="showPage('home')">
+    🏠<br>Home
+  </div>
+
+  <div class="nav-btn" onclick="alert('Cart Coming Soon')">
+    🛒<br>Cart
+  </div>
+
+  <div class="nav-btn" onclick="alert('Account Coming Soon')">
+    👤<br>Account
+  </div>
+
+  <div class="nav-btn" onclick="alert('Service Coming Soon')">
+    📞<br>Service
+  </div>
+
 </div>
 
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
-import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
-  const firebaseConfig = {
-    apiKey: "AIzaSyDEb6q9F8escjPjr-9JeSJNiYppCKLzU8E",
-    authDomain: "bazarx-c910c.firebaseapp.com",
-    projectId: "bazarx-c910c",
-    storageBucket: "bazarx-c910c.firebasestorage.app",
-    messagingSenderId: "262979651725",
-    appId: "1:262979651725:web:07d4cb80d338517a393ac4"
-  };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  let tapCount = 0;
-  let allProducts = []; // SEARCH KE LIYE
+/* =========================
+   FIREBASE IMPORTS
+========================= */
 
-  window.secretAdmin = function(){
-    tapCount++; setTimeout(()=>{tapCount=0}, 2000);
-    if(tapCount >= 10){
-      let pass = prompt("Enter Admin Password:");
-      if(pass == 'admin123'){ showPage('admin'); loadAdminProducts(); }
-      tapCount = 0;
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDEb6q9F8escJpjr-9JeSJNiYppCKLzU8E",
+
+  authDomain: "bazarx-c910c.firebaseapp.com",
+
+  projectId: "bazarx-c910c",
+
+  storageBucket: "bazarx-c910c.firebasestorage.app",
+
+  messagingSenderId: "262979651725",
+
+  appId: "1:262979651725:web:07d4cb80d338517a393ac4"
+
+};
+
+
+/* =========================
+   FIREBASE START
+========================= */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const auth = getAuth(app);
+
+
+/* =========================
+   ADMIN EMAIL
+========================= */
+
+const ADMIN_EMAIL =
+  "affanuddin996@gmail.com";
+
+
+let tapCount = 0;
+
+let allProducts = [];
+
+
+/* =========================
+   SECRET ADMIN LOGIN
+========================= */
+
+window.secretAdmin = async function(){
+
+  tapCount++;
+
+  setTimeout(() => {
+    tapCount = 0;
+  }, 2000);
+
+
+  if(tapCount >= 10){
+
+    tapCount = 0;
+
+
+    const email =
+      prompt("Admin Email:");
+
+    if(!email){
+      return;
     }
-  }
-  
-  window.showPage = function(pageId){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-    if(pageId == 'home') document.querySelector('.nav-btn').classList.add('active');
 
-    if(pageId == 'admin'){ 
-      loadAdminProducts(); 
+
+    const password =
+      prompt("Admin Password:");
+
+    if(!password){
+      return;
     }
-  } 
 
-  function loadProducts(){
-    onSnapshot(collection(db, "products"), (snapshot) => {
-      allProducts = [];
-      snapshot.forEach((doc) => { allProducts.push({id: doc.id, ...doc.data()}); });
-      displayProducts(allProducts);
-    }, (error) => {
-      document.getElementById('productList').innerHTML = '<div class="no-product">Firebase Error: '+error.message+'</div>';
-    });
+
+    /* ADMIN EMAIL CHECK */
+
+    if(
+      email.toLowerCase() !==
+      ADMIN_EMAIL.toLowerCase()
+    ){
+
+      alert("Access Denied");
+
+      return;
+    }
+
+
+    try{
+
+      /* FIREBASE LOGIN */
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+      /* OPEN ADMIN */
+
+      showPage("admin");
+
+      loadAdminProducts();
+
+
+    }catch(error){
+
+      console.error(error);
+
+      alert(
+        "Login Failed!\n\n" +
+        error.message
+      );
+
+    }
+
   }
 
-  function displayProducts(products){
-    let html=''; 
-    if(products.length==0){ html='<div class="no-product">No products yet. Add from Admin</div>'; }
-    products.forEach((p)=>{ 
-      html += `<div class="card"><img src="${p.imgs}" onerror="this.src='https://i.imgur.com/8Km9tLL.jpg'"><h3>${p.name}</h3><div class="price">Rs ${p.price}</div><div class="stock">Stock: ${p.stock}</div><div class="delivery">${p.delivery}</div><div class="cod">💵 Cash on Delivery Available</div></div>`;
-    });
-    document.getElementById('productList').innerHTML = html;
+};
+
+
+/* =========================
+   PAGE SYSTEM
+========================= */
+
+window.showPage = function(pageId){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(p =>
+      p.classList.remove("active")
+    );
+
+
+  document
+    .getElementById(pageId)
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(b =>
+      b.classList.remove("active")
+    );
+
+
+  if(pageId === "home"){
+
+    document
+      .querySelector(".nav-btn")
+      .classList.add("active");
+
   }
 
-  // NAYE FUNCTION
-  window.searchProduct = function(){
-    let term = document.getElementById('searchInput').value.toLowerCase();
-    let filtered = allProducts.filter(p => p.name.toLowerCase().includes(term));
-    displayProducts(filtered);
-  }
 
-  window.filterCategory = function(cat){
-    alert(cat + ' - Coming Soon');
-    displayProducts(allProducts);
-  }
+  if(pageId === "admin"){
 
-  window.addProduct = async function(){
-    if(!document.getElementById('pName').value) return alert('Name likho');
-    await addDoc(collection(db, "products"), {
-      name: document.getElementById('pName').value, 
-      price: document.getElementById('pPrice').value, 
-      stock: document.getElementById('pStock').value,
-      delivery: document.getElementById('pDelivery').value, 
-      imgs: document.getElementById('pImgs').value, 
-      category: 'General'
-    });
-    alert('Product Added!'); 
-    document.getElementById('pName').value='';
-    document.getElementById('pPrice').value='';
-    document.getElementById('pStock').value='';
-    document.getElementById('pDelivery').value='';
-    document.getElementById('pImgs').value='';
     loadAdminProducts();
+
   }
 
-  window.loadAdminProducts = async function(){
-    const snapshot = await getDocs(collection(db, "products"));
-    let html=''; 
-    snapshot.forEach((doc) => { 
+};
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
+
+function loadProducts(){
+
+  onSnapshot(
+
+    collection(db, "products"),
+
+    (snapshot) => {
+
+      allProducts = [];
+
+
+      snapshot.forEach((doc) => {
+
+        allProducts.push({
+
+          id: doc.id,
+
+          ...doc.data()
+
+        });
+
+      });
+
+
+      displayProducts(allProducts);
+
+    },
+
+
+    (error) => {
+
+      console.error(error);
+
+
+      document
+        .getElementById("productList")
+        .innerHTML =
+        '<div class="no-product">' +
+        'Firebase Error: ' +
+        error.message +
+        '</div>';
+
+    }
+
+  );
+
+}
+
+
+/* =========================
+   DISPLAY PRODUCTS
+========================= */
+
+function displayProducts(products){
+
+  let html = "";
+
+
+  if(products.length === 0){
+
+    html =
+      '<div class="no-product">' +
+      'No products yet. Add from Admin' +
+      '</div>';
+
+  }
+
+
+  products.forEach((p) => {
+
+    html += `
+
+      <div class="card">
+
+        <img
+          src="${p.imgs || ''}"
+          onerror="this.src='https://i.imgur.com/8Km9tLL.jpg'"
+        >
+
+        <h3>
+          ${p.name || ""}
+        </h3>
+
+        <div class="price">
+          Rs ${p.price || ""}
+        </div>
+
+        <div class="stock">
+          Stock: ${p.stock || ""}
+        </div>
+
+        <div class="delivery">
+          ${p.delivery || ""}
+        </div>
+
+        <div class="cod">
+          💵 Cash on Delivery Available
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  document
+    .getElementById("productList")
+    .innerHTML = html;
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+window.searchProduct = function(){
+
+  let term =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase();
+
+
+  let filtered =
+    allProducts.filter(p =>
+
+      (p.name || "")
+        .toLowerCase()
+        .includes(term)
+
+    );
+
+
+  displayProducts(filtered);
+
+};
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+window.filterCategory = function(cat){
+
+  alert(
+    cat + " - Coming Soon"
+  );
+
+  displayProducts(allProducts);
+
+};
+
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+window.addProduct = async function(){
+
+  /* CHECK LOGIN */
+
+  const currentUser =
+    auth.currentUser;
+
+
+  if(!currentUser){
+
+    alert(
+      "Admin login required!"
+    );
+
+    return;
+
+  }
+
+
+  /* CHECK ADMIN EMAIL */
+
+  if(
+    currentUser.email.toLowerCase() !==
+    ADMIN_EMAIL.toLowerCase()
+  ){
+
+    alert("Access Denied");
+
+    return;
+
+  }
+
+
+  const name =
+    document
+      .getElementById("pName")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    alert("Name likho");
+
+    return;
+
+  }
+
+
+  try{
+
+    /* ADD TO FIRESTORE */
+
+    await addDoc(
+
+      collection(db, "products"),
+
+      {
+
+        name: name,
+
+        price:
+          document
+            .getElementById("pPrice")
+            .value,
+
+        stock:
+          document
+            .getElementById("pStock")
+            .value,
+
+        delivery:
+          document
+            .getElementById("pDelivery")
+            .value,
+
+        imgs:
+          document
+            .getElementById("pImgs")
+            .value,
+
+        category: "General"
+
+      }
+
+    );
+
+
+    alert(
+      "Product Added!"
+    );
+
+
+    /* CLEAR FIELDS */
+
+    document.getElementById("pName").value = "";
+
+    document.getElementById("pPrice").value = "";
+
+    document.getElementById("pStock").value = "";
+
+    document.getElementById("pDelivery").value = "";
+
+    document.getElementById("pImgs").value = "";
+
+
+    loadAdminProducts();
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "Product Add Failed!\n\n" +
+      error.message
+    );
+
+  }
+
+};
+
+
+/* =========================
+   ADMIN PRODUCTS
+========================= */
+
+window.loadAdminProducts = async function(){
+
+  const currentUser =
+    auth.currentUser;
+
+
+  if(!currentUser){
+
+    document
+      .getElementById("adminProductList")
+      .innerHTML =
+      "<p>Admin login required.</p>";
+
+    return;
+
+  }
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(db, "products")
+      );
+
+
+    let html = "";
+
+
+    snapshot.forEach((doc) => {
+
       let p = doc.data();
-      html += `<div class="admin-product-item"><b>${p.name}</b> - Rs ${p.price}</div>` 
+
+
+      html += `
+
+        <div class="admin-product-item">
+
+          <b>
+            ${p.name || ""}
+          </b>
+
+          - Rs ${p.price || ""}
+
+        </div>
+
+      `;
+
     });
-    document.getElementById('adminProductList').innerHTML = html;
+
+
+    document
+      .getElementById("adminProductList")
+      .innerHTML = html;
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    document
+      .getElementById("adminProductList")
+      .innerHTML =
+      "<p>Firebase Error: " +
+      error.message +
+      "</p>";
+
   }
 
-  loadProducts();
+};
+
+
+/* =========================
+   START WEBSITE
+========================= */
+
+loadProducts();
+
 </script>
+
 </body>
 </html>
