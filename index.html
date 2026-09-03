@@ -19,7 +19,7 @@ body{background:#f5f5f5; padding-bottom:60px}
 .page.active{display:block}
 .no-product{text-align:center;padding:80px 20px;color:#666;font-size:16px;font-weight:500}
 .product-list{padding:10px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.card{background:white;padding:10px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1);cursor:pointer}
+.card{background:white;padding:10px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
 .card img{width:100%;height:150px;object-fit:cover;border-radius:5px;background:#eee}
 .card h3{margin:5px 0;font-size:13px;height:32px;overflow:hidden}
 .price{color:#ff6600;font-weight:bold;font-size:15px}
@@ -27,12 +27,12 @@ body{background:#f5f5f5; padding-bottom:60px}
 .delivery{color:#555;font-size:11px}
 .cod{color:#00c853;font-size:11px;font-weight:bold}
 .admin-panel{background:white;margin:10px;padding:15px;border-radius:8px}
-.admin-panel input,.admin-panel textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:5px}
+.admin-panel input{width:100%;padding:10px;margin:6px 0;border:1px solid #ddd;border-radius:5px}
 .btn{background:#ff6600;color:white;border:none;padding:12px;width:100%;border-radius:5px;font-weight:bold;cursor:pointer}
-.admin-product-item{display:flex;justify-content:space-between;border:1px solid #ddd;padding:10px;margin:5px 0;border-radius:5px;font-size:13px;background:#fafafa;flex-direction:column}
+.admin-product-item{border:1px solid #ddd;padding:10px;margin:5px 0;border-radius:5px;font-size:13px;background:#fafafa}
 .nav{display:flex;justify-content:space-around;background:white;padding:8px 0;position:fixed;bottom:0;width:100%;border-top:1px solid #ddd}
-.nav div{text-align:center;font-size:11px;color:#777;cursor:pointer}
-.nav div.active{color:#ff6600}
+.nav-btn{text-align:center;font-size:11px;color:#777;cursor:pointer;flex:1}
+.nav-btn.active{color:#ff6600}
 </style>
 </head>
 <body>
@@ -45,10 +45,10 @@ body{background:#f5f5f5; padding-bottom:60px}
     <button onclick="searchProduct()">Search</button>
   </div>
   <div class="categories">
-    <div class="cat" onclick="filterCategory('Mobile')"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"><p>Mobile</p></div>
-    <div class="cat" onclick="filterCategory('Fashion')"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200"><p>Fashion</p></div>
-    <div class="cat" onclick="filterCategory('Grocery')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"><p>Grocery</p></div>
-    <div class="cat" onclick="filterCategory('Beauty')"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200"><p>Beauty</p></div>
+    <div class="cat" onclick="alert('Mobile - Coming Soon')"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"><p>Mobile</p></div>
+    <div class="cat" onclick="alert('Fashion - Coming Soon')"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200"><p>Fashion</p></div>
+    <div class="cat" onclick="alert('Grocery - Coming Soon')"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"><p>Grocery</p></div>
+    <div class="cat" onclick="alert('Beauty - Coming Soon')"><img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200"><p>Beauty</p></div>
   </div>
   <div id="productList" class="product-list"></div>
 </div>
@@ -59,7 +59,7 @@ body{background:#f5f5f5; padding-bottom:60px}
     <input id="pName" placeholder="Product Name">
     <input id="pPrice" type="number" placeholder="Price Rs">
     <input id="pStock" placeholder="Stock">
-    <input id="pDelivery" placeholder="Delivery">
+    <input id="pDelivery" placeholder="Delivery Info">
     <input id="pImgs" placeholder="Image URL">
     <button class="btn" onclick="addProduct()">Add Product</button>
     <button class="btn" style="background:#777;margin-top:8px" onclick="showPage('home')">Back to Home</button>
@@ -76,17 +76,16 @@ body{background:#f5f5f5; padding-bottom:60px}
 </div>
 
 <script type="module">
-  
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
-import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
+  import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+
   const firebaseConfig = {
     apiKey: "AIzaSyDEb6q9F8escjPjr-9JeSJNiYppCKLzU8E",
     authDomain: "bazarx-c910c.firebaseapp.com",
     projectId: "bazarx-c910c",
     storageBucket: "bazarx-c910c.firebasestorage.app",
     messagingSenderId: "262979651725",
-    appId: "1:262979651725:web:07d4cb80d338517a393ac4",
-    measurementId: "G-RRBY6T1FKW"
+    appId: "1:262979651725:web:07d4cb80d338517a393ac4"
   };
 
   const app = initializeApp(firebaseConfig);
@@ -94,47 +93,70 @@ import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://w
   let tapCount = 0;
 
   window.secretAdmin = function(){
-    tapCount++; setTimeout(()=>{tapCount=0}, 2000);
+    tapCount++; 
+    setTimeout(()=>{tapCount=0}, 2000);
     if(tapCount >= 10){
       let pass = prompt("Enter Admin Password:");
-      if(pass == 'admin123'){ showPage('admin'); loadAdminProducts(); }
+      if(pass == 'admin123'){ 
+        showPage('admin'); 
+        loadAdminProducts(); 
+      }
       tapCount = 0;
     }
   }
   
- window.showPage = function(pageId){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(pageId).classList.add('active');
-
-  if(pageId == 'admin'){ 
-    loadAdminProducts(); 
-  } else { 
-    loadProducts(); 
-  }
- } 
+  window.showPage = function(pageId){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    if(pageId == 'home') document.querySelector('.nav-btn').classList.add('active');
+    if(pageId == 'admin'){ loadAdminProducts(); }
+  } 
 
   function loadProducts(){
-    onSnapshot(collection(db, "products"), (snapshot) => {
+    const q = collection(db, "products");
+    onSnapshot(q, (snapshot) => {
       let products = [];
       snapshot.forEach((doc) => { products.push({id: doc.id, ...doc.data()}); });
       let html=''; 
-      if(products.length==0){ html='<div class="no-product">No products yet. Add from Admin</div>'; }
-      products.forEach((p)=>{ 
-        html += `<div class="card"><img src="${p.imgs}" onerror="this.src='https://i.imgur.com/8Km9tLL.jpg'"><h3>${p.name}</h3><div class="price">Rs ${p.price}</div><div class="stock">Stock: ${p.stock}</div><div class="delivery">${p.delivery}</div><div class="cod">💵 Cash on Delivery Available</div></div>`;
-      });
+      if(products.length==0){ 
+        html='<div class="no-product">No products yet. Add from Admin Panel</div>'; 
+      } else {
+        products.forEach((p)=>{ 
+          html += `<div class="card">
+            <img src="${p.imgs}" onerror="this.src='https://i.imgur.com/8Km9tLL.jpg'">
+            <h3>${p.name}</h3>
+            <div class="price">Rs ${p.price}</div>
+            <div class="stock">Stock: ${p.stock}</div>
+            <div class="delivery">${p.delivery}</div>
+            <div class="cod">💵 Cash on Delivery</div>
+          </div>`;
+        });
+      }
       document.getElementById('productList').innerHTML = html;
     });
   }
 
+  window.searchProduct = function(){
+    alert('Search - Coming Soon');
+  }
+
   window.addProduct = async function(){
-    if(!pName.value) return alert('Name likho');
+    if(!document.getElementById('pName').value) return alert('Product Name likho');
     await addDoc(collection(db, "products"), {
-      name: pName.value, price: pPrice.value, stock: pStock.value,
-      delivery: pDelivery.value, imgs: pImgs.value, category: 'General'
+      name: document.getElementById('pName').value, 
+      price: document.getElementById('pPrice').value, 
+      stock: document.getElementById('pStock').value,
+      delivery: document.getElementById('pDelivery').value, 
+      imgs: document.getElementById('pImgs').value
     });
-    alert('Product Added!'); 
-    pName.value=''; pPrice.value=''; pStock.value=''; pDelivery.value=''; pImgs.value='';
-    loadAdminProducts(); // <-- YE LINE ADD KI
+    alert('Product Added Successfully!'); 
+    document.getElementById('pName').value='';
+    document.getElementById('pPrice').value='';
+    document.getElementById('pStock').value='';
+    document.getElementById('pDelivery').value='';
+    document.getElementById('pImgs').value='';
+    loadAdminProducts();
   }
 
   window.loadAdminProducts = async function(){
@@ -147,7 +169,7 @@ import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://w
     document.getElementById('adminProductList').innerHTML = html;
   }
 
-  loadProducts();
+  loadProducts(); // PAGE LOAD HOTE HI PRODUCTS
 </script>
 </body>
 </html>
